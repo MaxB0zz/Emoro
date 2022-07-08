@@ -1,6 +1,10 @@
 {
-  "name": "project-ide",
+  "name": "emoro-ide",
   "version": "0.0.1",
+  "description": "Worst IDE of all time",
+  "author": {
+    "name": "Oui"
+  },
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.8",
@@ -28,7 +32,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "dev": "concurrently -k \"SET BROWSER=none&&npm run start\" \"wait-on tcp:3000 && electron .\"",
-    "electron": "electron ."
+    "electron": "electron .",
+    "create-exe": "npm run build && electron-builder --dir"
+  },
+  "build": {
+    "appId": "com.emoro.ide",
+    "productName": "emoro-ide",
+    "win": {
+      "icon": "public/logo512.png"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +64,7 @@
     "concurrently": "^7.2.2",
     "electron": "^19.0.7",
     "electron-devtools-installer": "^3.2.0",
+    "electron-builder": "^23.1.0",
     "electron-reload": "^2.0.0-alpha.1",
     "wait-on": "^6.0.1"
   }
