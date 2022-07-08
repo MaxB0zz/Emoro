@@ -1,0 +1,126 @@
+@import "../../../vars"
+
+.Explorer
+  position: relative
+  background: $explorer-background
+  font-weight: 400
+  line-height: 21px
+  font-size: $default-font-size
+  color: $explorer-color
+  z-index: 2
+  width: 100%
+  height: 100%
+
+  .Navigator
+    overflow: auto
+    position: absolute
+    top: 4px
+    bottom: 4px
+    right: 4px
+    left: 4px
+
+    & > span
+      font-size: calc(#{$default-font-size} * 1.5)
+      @extend .unselectable
+
+    &::-webkit-scrollbar
+      width: 10px
+      height: 8px
+
+    &::-webkit-scrollbar-track
+      background-color: $explorer-background
+
+    &::-webkit-scrollbar-thumb
+      background-color: $explorer-trackbar
+      @extend .pointer
+
+    &::-webkit-scrollbar-corner
+      background-color: $explorer-background
+
+    ul
+      padding: 0 0 0 5px
+      list-style: none
+      margin: 0
+
+      & > li
+        & > input ~ label > span:before
+          content: ""
+          display: inline-block
+          margin: 0 .25em 2px 6px
+          width: 1rem
+          height: 1rem
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' fill='#{$explorer-svg-color}' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4C2.89 4 2 4.89 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V8C22 6.89 21.1 6 20 6H12L10 4Z' /%3E%3C/svg%3E")
+          background-repeat: no-repeat
+          background-size: cover
+
+        & > input:checked ~ label > span:before
+          content: ""
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='#{$explorer-svg-color}' version='1.1' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M19 20H4C2.89 20 2 19.1 2 18V6C2 4.89 2.89 4 4 4H10L12 6H19A2 2 0 0 1 21 8H21L4 8V18L6.14 10H23.21L20.93 18.5C20.7 19.37 19.92 20 19 20Z' /%3E%3C/svg%3E")
+
+
+    li
+      position: relative
+      padding-top: 5px
+      padding-bottom: 0
+      padding-left: 15px
+      box-sizing: border-box
+      white-space: nowrap
+      @extend .unselectable
+
+      span
+        padding-left: 4px
+        display: inline-flex
+        align-items: center
+        @extend .pointer
+
+      &:before
+        position: absolute
+        top: 15px
+        left: 0
+        width: 10px
+        height: 1px
+        margin: auto
+        content: ''
+        background-color: $explorer-color
+
+      &:after
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        width: 1px
+        height: 100%
+        content: ''
+        background-color: $explorer-color
+
+      &:last-child:after
+        height: 15px
+
+      input
+        appearance: none
+        position: relative
+        user-select: none
+        cursor: pointer
+
+        &:after
+          content: ' '
+          display: inline-block
+          transform: rotate(135deg)
+          font-size: 1rem
+          font-weight: 900
+          position: absolute
+          top: -0.55rem
+          left: -0.15rem
+          border-left: 1px solid $explorer-color
+          border-top: 1px solid $explorer-color
+          clear: both
+          width: 0.45rem
+          height: 0.45rem
+          transition: all ease 0.1s
+
+        &:checked:after
+          transform: rotate(225deg)
+          top: -0.7rem
+
+        &:not(:checked) ~ ul
+          display: none

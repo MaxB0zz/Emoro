@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap')
+
+$default-font-size: 14px
+$selected-background: #6776e8
+
+$header-background: #101111
+$header-background-hover: lighten($header-background, 10%)
+$header-color: #cfd3d3
+
+$editor-background: #282a3a
+$editor-background-2: darken($editor-background, 10%)
+$editor-background-hover: lighten($editor-background, 10%)
+$editor-color: #DBDBD9
+$editor-trackbar: rgba(0,0,0,0.1)
+
+$explorer-background: #282a3a
+$explorer-background-hover: lighten($explorer-background, 10%)
+$explorer-color: #DBDBD9
+$explorer-svg-color: "%23FCFCFA"
+
+$explorer-trackbar: rgba(0,0,0,0.1)
+
+$console-background: #191a21
+
+$default-animation-time: 0.15s
+
+
+/** CONSOLE **/
+$title-color: #E70AFA
+$title-color-2: #00FBEF
+$play-button-color: #50D719
+$stop-button-color: #FF4949
+$add-button-color: #FAEA48
+$pull-button-color: #a86bc0
+$commit-button-color: #F637EC
+$push-button-color: #37E2D5
+
+$bars-width: 3vh
+
+@font-face
+    font-family: neon
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf)
+
+.editor-font
+    font-family: 'JetBrains Mono', monospace
+
+.unselectable
+    -webkit-touch-callout: none /* iOS Safari */
+    -webkit-user-select: none /* Safari */
+    -moz-user-select: none /* Firefox */
+    -ms-user-select: none /* Internet Explorer/Edge */
+    user-select: none /* Non-prefixed version, currently supported by Chrome and Opera */
+
+.pointer
+    cursor: pointer

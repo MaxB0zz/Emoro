@@ -1,0 +1,27 @@
+@import "../../../vars"
+
+.Controllers
+  display: flex
+
+.ControllersButton
+  @extend .unselectable
+  @extend .pointer
+  transition: all ease $default-animation-time
+  width: 3.33rem
+  height: 100%
+  display: flex
+  align-content: center
+  justify-content: center
+  align-items: center
+
+.HideButton
+  @extend .ControllersButton
+
+  &:hover
+    background: $header-background-hover
+
+.CloseButton
+  @extend .ControllersButton
+
+  &:hover
+    background: #ff0000
