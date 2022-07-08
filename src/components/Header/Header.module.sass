@@ -8,10 +8,23 @@
   z-index: 3
   position: relative
 
+  .DraggableHeader
+    //-webkit-app-region: drag
+    z-index: 0
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    left: 0
+
+  *
+    z-index: 9
+    position: relative
+
   .Title
     font-size: 1.8rem
     font-weight: 500
-    font-family: neon
+    font-family: neon, fantasy
     @extend .unselectable
     @extend .pointer
 
@@ -28,7 +41,6 @@
         -moz-animation: flux 2s linear infinite
         -webkit-animation: flux 2s linear infinite
         -o-animation: flux 2s linear infinite
-
 
 @keyframes neon
   0%

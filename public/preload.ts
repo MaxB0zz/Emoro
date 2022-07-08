@@ -1,24 +1,5 @@
+// @ts-ignore
 window.onload = function () {
-    function execute_cmd(cmd, path){
-        let res = {output: "Error", error: "Error"};
-
-        process.chdir(path);
-
-        const { exec } = require('node:child_process');
-
-        exec(cmd, (error, stdout, stderr) => {
-            res.output = stdout;
-            res.error = stderr;
-        });
-
-        localStorage.setItem("exec_result", JSON.stringify(res));
-        //localStorage("output", xxx);
-    }
-
-    //var mus = new Audio("https://youtu.be/oC-GflRB0y4")
-    //mus.play()
-    execute_cmd("echo test", "C:\\Users\\bomax\\OneDrive\\Desktop\\gitping\\emoroide\\");
-    console.log(localStorage.getItem("exec_result"))
     localStorage.setItem("currentFile", null)
     const ipcRenderer = require('electron').ipcRenderer;
     const fs = require('fs');
@@ -26,12 +7,58 @@ window.onload = function () {
     const {dialog} = remote;
     const slugger = require('slugger');
 
+    const maxSizeForEditorToOpenAFile = 1000000;
 
-    if (localStorage.getItem("currentFile") !== null) {
+    function playMusic(path) {
+        const audio = new Audio(path);
+        audio.volume = 0.05;
+        audio.play().then(() => {
+        }).catch(e => {
+            console.log(e);
+        });
+
+    }
+
+    playMusic('../music/FX/intro.mp3');
+
+
+    let pageY, currentRow, nextRow, currentRowHeight, nextRowHeight
+
+    document.getElementById("resizer").addEventListener("mousedown", function (e) {
+        currentRow = document.getElementById("console")
+        nextRow = document.getElementById("editor")
+        pageY = e.pageY
+        currentRowHeight = currentRow.offsetHeight
+        if (nextRow) {
+            nextRowHeight = nextRow.offsetHeight
+        }
+    })
+
+    document.addEventListener("mousemove", function (e) {
+        if (currentRow) {
+            let diffY = e.pageY - pageY
+
+            if (nextRow) {
+                nextRow.style.height = (nextRowHeight + diffY) + 'px'
+                currentRow.style.height = (currentRowHeight - diffY) + 'px'
+            }
+        }
+    })
+
+    document.addEventListener("mouseup", function (e) {
+        currentRow = undefined
+        nextRow = undefined
+        pageY = undefined
+        nextRowHeight = undefined
+        currentRowHeight = undefined
+    })
+
+
+    if (localStorage.hasOwnProperty("currentFile")) {
         fillEditor(localStorage.getItem("currentFile"));
     }
 
-    if (localStorage.getItem("currentProject") !== null) {
+    if (localStorage.hasOwnProperty("currentProject")) {
         fillExplorer(localStorage.getItem("currentProject"));
     }
 
@@ -54,25 +81,32 @@ window.onload = function () {
     })
 
     document.getElementById("addMusic").addEventListener("click", function () {
-        window.open("index.html","Ratting","width=550,height=170,left=150,top=200,toolbar=0,status=0,")
+        window.open("index.html", "Ratting", "width=550,height=170,left=150,top=200,toolbar=0,status=0,")
     })
+
     function fillEditor(path) {
-        localStorage.setItem("currentFile", path);
-        fs.readFile(path, 'utf8', function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                // @ts-ignore
-                document.getElementById("textEditor").value = data;
-                document.getElementById("textEditor").focus();
-                document.getElementById("textEditor").dispatchEvent(new Event('input', {
-                    bubbles: true
-                }));
-                document.getElementById("textEditor").dispatchEvent(new Event('keydown', {
-                    bubbles: true
-                }));
+        if(path !== "null") {
+            localStorage.setItem("currentFile", path);
+            if(fs.statSync(path).size <= maxSizeForEditorToOpenAFile) {
+                fs.readFile(path, 'utf8', function (err, data) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        // @ts-ignore
+                        document.getElementById("textEditor").value = data;
+                        document.getElementById("textEditor").focus();
+                        document.getElementById("textEditor").dispatchEvent(new Event('input', {
+                            bubbles: true
+                        }));
+                        document.getElementById("textEditor").dispatchEvent(new Event('keydown', {
+                            bubbles: true
+                        }));
+                    }
+                });
             }
-        });
+        } else {
+            alert("The file size should be less than " + maxSizeForEditorToOpenAFile + " bytes");
+        }
     }
 
     document.getElementById("openProject").addEventListener("click", function () {
@@ -88,7 +122,7 @@ window.onload = function () {
 
     document.querySelector("*").addEventListener("click", function (event) {
         // @ts-ignore
-        if(event.target.classList.contains("explorer-file")){
+        if (event.target.classList.contains("explorer-file")) {
             // @ts-ignore
             fillEditor(event.target.dataset.path);
         }
@@ -113,7 +147,6 @@ window.onload = function () {
         html += "</ul>";
 
 
-
         return html;
     }
 
@@ -127,7 +160,7 @@ window.onload = function () {
             if (stats.isDirectory()) {
                 html += "<li>"
                 html += "<input type=\"checkbox\" id=\"" + slugger(file) + "\"/>"
-                html += "<label for=\"" + slugger(file) +"\">"
+                html += "<label for=\"" + slugger(file) + "\">"
                 html += "<span> " + file + " </span>"
                 html += "</label>"
                 html += "</span>";

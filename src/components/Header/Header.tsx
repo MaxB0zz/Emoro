@@ -8,6 +8,7 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = () => (
     <div className={styles.Header}>
+        <div className={styles.DraggableHeader} />
         <Menu/>
         <div className={styles.Title}>
             <span>Emo</span>

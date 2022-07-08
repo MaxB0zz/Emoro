@@ -98,7 +98,7 @@ const Editor: FC<EditorProps> = () => {
         }
     }
 
-    return (<div className={styles.Editor}>
+    return (<div className={styles.Editor} id="editor">
         <div className={styles.LineCounterBack}/>
         <div className={styles.LineCounter} id="lineCounter"><span/></div>
         <textarea onInput={handleInputEvent} onScroll={handleScrollEvent} onKeyDown={handleKeyDownEvent}

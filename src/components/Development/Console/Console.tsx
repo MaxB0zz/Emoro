@@ -6,12 +6,11 @@ import Add from "./SVG/Add";
 import Push from "./SVG/Push";
 import Commit from "./SVG/Commit";
 import Pull from "./SVG/Pull";
-import execute_cmd from "./execute/Execute";
 interface ConsoleProps {
 }
 
-const Console: FC<ConsoleProps> = () => (<div className={styles.Console}>
-    <div className={styles.Resizer}></div>
+const Console: FC<ConsoleProps> = () => (<div className={styles.Console} id="console">
+    <div className={styles.Resizer} id="resizer"></div>
     <div className={styles.HeadBar}>
         <div className={styles.Compiling}>
             <Play/>
