@@ -1,0 +1,18 @@
+GET http://localhost:8081/rootnode?path=C:\Users\bomax\OneDrive\Desktop\C\maximilien.bouyjou-piscine-2024-rattrapages
+###
+
+GET http://localhost:8081/mvn/hello-there-mthfker
+
+###
+
+GET http://localhost:8081/git/commit-there-mthfker
+
+###
+
+GET http://localhost:8081/execute?command=dir
+
+###
+
+GET http://localhost:8081/execute?command=cd
+
+
