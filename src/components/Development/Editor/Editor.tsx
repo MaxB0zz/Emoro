@@ -57,11 +57,13 @@ const Editor: FC<EditorProps> = () => {
     }
 
     const completeBrackets = (event: any) => {
+        return;
+        //TODO not operational: autocompletion only works on the last line.
         let textArea = event.target
         switch (event.key) {
             case "{":
                 event.preventDefault()
-                textArea.value += "{}"
+                textArea.value += "{}" // <- problem
                 handleInputEvent(event)
                 textArea.selectionEnd = textArea.value.length - 1
                 break;

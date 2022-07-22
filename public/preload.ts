@@ -16,7 +16,8 @@ window.onload = function ()  {
 }
 
 async function lo() {
-    //localStorage.setItem("currentFile", null)
+    localStorage.setItem("currentFile", null)
+    localStorage.setItem("currentProject", null)
     const maxSizeForEditorToOpenAFile = 500000;
 
 
