@@ -15,7 +15,12 @@ const Menu: FC<MenuProps> = () => (
                 <li>Close</li>
             </ul>
         </li>
-        <li>Run</li>
+        <li className={styles.DropDown}>
+            <span>Run</span>
+            <ul className={styles.DropDownContent}>
+                <li id="execjava">java</li>
+            </ul>
+        </li>
         <li className={styles.DropDown}>
             <span>Music</span>
             <ul className={styles.DropDownContent}>

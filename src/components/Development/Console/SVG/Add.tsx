@@ -5,7 +5,7 @@ interface AddProps {
 }
 
 const Add: FC<AddProps> = () => (
-    <svg version="1.1" className={styles.ConsoleAddButton} xmlns="http://www.w3.org/2000/svg"
+    <svg version="1.1" className={styles.ConsoleAddButton} id="gitadd" xmlns="http://www.w3.org/2000/svg"
          xmlnsXlink="http://www.w3.org/1999/xlink" x="0px"
          y="0px" viewBox="0 0 20 20" enableBackground="new 0 0 20 20" xmlSpace="preserve">
         <path fill="white" d="M15,10l-9,5V5L15,10z"/>

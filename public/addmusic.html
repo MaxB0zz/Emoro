@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        input {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+
+<form>
+    <label for="fname">add song</label>
+    <input type="text" id="fname" name="fname">
+    <input type="submit" onclick="add_track()">
+</form>
+    <span id="added"></span>
+</body>
+</html>
+
+<script>
+
+    function add_track() {
+        let cont = document.getElementById("fname");
+        let res = document.getElementById("added");
+        let fs = require('fs');
+        let tracklist = require("./music/tracks/tracks.json")
+        tracklist.push(cont.value);
+        fs.writeFileSync("./music/tracks/tracks.json", tracklist, "utf8")
+        cont.value = ""
+    }
+</script>

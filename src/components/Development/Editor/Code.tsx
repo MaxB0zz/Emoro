@@ -13,7 +13,7 @@ const Code: FC<CodeProps> = ({code, language}) => {
 
     useEffect(() => Prism.highlightAll(), [])
     return <div className={styles.Code}>
-        <pre><code id="highlighted" className={`language-${language}`}>{code}</code></pre>
+        <pre><code id="highlighted" className={`language-${language}`}>//Open your projet! (Files - open){code}</code></pre>
     </div>
 };
 

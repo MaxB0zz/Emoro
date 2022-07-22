@@ -1,4 +1,130 @@
 @import "../../../vars"
 
 .Music
-  background: blue
+  background: darken($editor-background, 10%)
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.MusicElements
+  display: flex
+  width: 100%
+  justify-content: center
+
+
+
+.MusicButtons
+  display: flex
+  justify-content: space-between
+  align-items: center
+  width: 40%
+  height: 100%
+  margin-top: 1rem
+  margin-bottom: 1rem
+  path
+    fill: $music-buttons
+
+.PlayButton
+  display: block
+  height: 6vh
+  min-width: 6vh
+  border-radius: 50%
+  border: solid 1px $music-buttons
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+  &:hover
+    background-color: darken($music-buttons, 40%)
+
+.PauseButton
+  display: none
+  height: 6vh
+  min-width: 6vh
+  border-radius: 50%
+  border: solid 1px $music-buttons
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+  &:hover
+    background-color: darken($music-buttons, 40%)
+
+
+
+#previous
+  height: 2vh
+  width: 2vh
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+  &:hover
+    path
+      fill: lighten($music-buttons, 10%)
+
+#next
+  height: 2vh
+  width: 2vh
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+  &:hover
+    path
+      fill: lighten($music-buttons, 100%)
+.otherButtons
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+.MusicElements
+  border-top: 3px solid
+  border-image-slice: 1
+  border-image-source: linear-gradient(137deg, rgba(234,0,255,1) 0%, rgba(0,251,239,1) 100%)
+  animation: animate-border infinite alternate 3s
+
+@keyframes animate-border
+  from
+    border-image-source: linear-gradient(137deg, rgba(234,0,255,1) 0%, rgba(0,251,239,1) 100%)
+  to
+    border-image-source: linear-gradient(137deg, rgba(0,251,239,1) 0%, rgba(234,0,255,1) 100%)
+
+.slider
+  -webkit-appearance: none
+  width: 100%
+  height: 5px
+  background: transparent
+  border-radius: 5px
+  border: 1px solid $music-buttons
+  outline: none
+  opacity: 0.7
+  -webkit-transition: .2s
+  transition: opacity .2s
+
+
+.slider:hover
+  opacity: 1
+
+
+
+.slider::-webkit-slider-thumb
+  -webkit-appearance: none
+  appearance: none
+  border-radius: 50%
+  width: 15px
+  height: 15px
+  background: darken($editor-background, 10%)
+  border: 1px solid $music-buttons
+  cursor: pointer
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+  &:hover
+    background-color: $music-buttons
+
+
+.slider::-moz-range-thumb
+  border-radius: 50%
+  width: 15px
+  height: 15px
+  background: darken($editor-background, 10%)
+  border: 1px solid $music-buttons
+  cursor: pointer
+  filter: drop-shadow(0px 0px 5px transparentize($music-buttons, 0.25))
+  &:hover
+    background-color: $music-buttons
+
+.volumelogo
+  height: 1rem
+  width: 1rem
+  path
+    fill: $music-buttons
+
+.slidecontainer
+  display: flex
+  align-items: center
+  justify-content: center

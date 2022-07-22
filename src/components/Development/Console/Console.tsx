@@ -27,12 +27,16 @@ const Console: FC<ConsoleProps> = () => (<div className={styles.Console} id="con
         </div>
 
     </div>
-    <div className={styles.ConsoleResults}>
-        <p>test result</p>
-        <p>another test result</p>
+    <div className={styles.Term}>
+        <p id="consoleResults" className={styles.consoleResults}/>
     </div>
-    <div className={styles.Console}>
-        <input type="text" className={styles.ConsoleTextArea}/>
+    <div className={styles.ConsoleTextAreaContainer} >
+        <input type="text" className={styles.ConsoleTextArea} spellCheck="false" id="enter"/>
+        <div className={styles.footer}>
+            <p className={styles.Terminal}>terminal</p>
+            <span id="currentOpenedFile" className={styles.openedfile}/>
+            <span id="datetime" className={styles.datetime}>test</span>
+        </div>
     </div>
 </div>);
 
